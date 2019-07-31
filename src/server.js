@@ -15,7 +15,7 @@ const io = require('socket.io')(server);
 
 //quando a aplicação for aberta no front gera uma conexao que recebe o socket 
 io.on('connection', socket => {
-    socket.on('connection' , box =>{
+    socket.on('connectionRoom' , box =>{
         socket.join(box);
     })
 })
@@ -36,6 +36,8 @@ app.use((req,res ,next)=>{
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(require('./routes'));
-app.use('/files', express.static(path.resolve(__dirname,'..','tmp')))
+app.use('/files', express.static(path.resolve(__dirname,'..','tmp')));
 
-server.listen(process.env.PORT||3500);
+server.listen(process.env.PORT||3500, ()=>{
+    console.log('Servidor Inciado!');
+});
