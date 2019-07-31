@@ -15,7 +15,7 @@ const io = require('socket.io')(server);
 
 //quando a aplicação for aberta no front gera uma conexao que recebe o socket 
 io.on('connection', socket => {
-    socket.on('connection' , box =>{
+    socket.on('connectionRoom' , box =>{
         socket.join(box);
     })
 })
